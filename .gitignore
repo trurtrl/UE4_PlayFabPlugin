@@ -1,0 +1,30 @@
+##########################
+# Unreal Generated Files #
+##########################
+
+/LoginToPlayFab/Intermediate/
+/LoginToPlayFab/Binaries/
+/LoginToPlayFab/Saved/
+/LoginToPlayFab/Content/StarterContent/Textures
+/LoginToPlayFab/Content/StarterContent/HDRI
+/LoginToPlayFab/Build
+
+
+######################
+# VS Generated Files #
+######################
+/LoginToPlayFab/*.VC.db
+/LoginToPlayFab/*.VC.db-shm
+/LoginToPlayFab/*.VC.db-wal
+/LoginToPlayFab/*.VC.opendb
+/LoginToPlayFab*.suo
+/LoginToPlayFab/*.ipch
+/LoginToPlayFab/*/.vs
+
+
+###########
+# PlayFab #
+###########
+/LoginToPlayFab/Plugins/PlayFab/Intermediate/
+/LoginToPlayFab/Plugins/PlayFab/Binaries/
+
