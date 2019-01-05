@@ -1,9 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PFGameInstance.h"
+#include "Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h"
+
 
 UPFGameInstance::UPFGameInstance()
 {
+	ConstructorHelpers::FClassFinder<UUserWidget> MenuClassFinder(TEXT("/Game/Menu"));
+	MenuClass = MenuClassFinder.Class;
+
 	clientAPI = IPlayFabModuleInterface::Get().GetClientAPI();
 	clientAPI->SetTitleId(TEXT("9D95"));
 

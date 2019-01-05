@@ -8,6 +8,7 @@
 #include "PlayFab.h"
 #include "Core/PlayFabClientDataModels.h"
 #include "Core/PlayFabClientAPI.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
 
 #include "PFGameInstance.generated.h"
 
@@ -20,6 +21,10 @@ class UPFGameInstance : public UGameInstance
 	GENERATED_BODY()
 	
 public:
+
+	TSubclassOf<class UUserWidget> MenuClass;
+
+
 	UPFGameInstance();
 	void OnSuccess(const PlayFab::ClientModels::FLoginResult& Result) const;
 	void OnError(const PlayFab::FPlayFabError& ErrorResult) const;
