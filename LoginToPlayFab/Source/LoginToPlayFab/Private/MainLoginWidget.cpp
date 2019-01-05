@@ -73,10 +73,10 @@ bool UMainLoginWidget::CheckWidgets()
 
 void UMainLoginWidget::LoginWidgetsShow()
 {
-	HeaderEmail->SetText(FText::FromString("E-Mail:"));
+	HeaderEmail->SetText(FText::FromString(TextLogin));
 	HeaderEmail->SetVisibility(ESlateVisibility::Visible);
 
-	HeaderPassword->SetText(FText::FromString("Password:"));
+	HeaderPassword->SetText(FText::FromString(TextPassword));
 	HeaderPassword->SetVisibility(ESlateVisibility::Visible);
 
 	BorderEmail->SetVisibility(ESlateVisibility::Visible);
@@ -86,7 +86,7 @@ void UMainLoginWidget::LoginWidgetsShow()
 	ButtonLogin->OnClicked.AddDynamic(this, &UMainLoginWidget::ButtonLoginClicked);
 	ButtonLogin->SetVisibility(ESlateVisibility::Visible);
 
-	ButtonLoginText->SetText(FText::FromString("LOGIN"));
+	ButtonLoginText->SetText(FText::FromString(TextButton));
 }
 
 void UMainLoginWidget::LoginWidgetsHide()
@@ -103,28 +103,20 @@ void UMainLoginWidget::ButtonLoginClicked()
 	// Clearify Error Message
 	Message->SetText(FText::FromString(""));
 
-	FText Email = InputEmail->GetText();
-	FText Password = InputPassword->GetText();
-	UE_LOG(LogTemp, Warning, TEXT("ButtonTest is clicled, E = %s\tP = %s"), *Email.ToString(), *Password.ToString())
-
 	UPFGameInstance* PFGI = Cast<UPFGameInstance>(GetWorld()->GetGameInstance());
-	if (IsValid(PFGI) && PFGI->Login())
+	if (IsValid(PFGI))
 	{
-		ShowMessageLogin();
-		LoginWidgetsHide();
+		PFGI->Login(InputEmail->GetText(), InputPassword->GetText(), this);
 	}
-	else
-	{
-		ShowMessageFail();
-	};
 }
 
-void UMainLoginWidget::ShowMessageLogin()
+void UMainLoginWidget::LoginSuccess()
 {
-	Message->SetText(FText::FromString("You logged in!"));
+	Message->SetText(FText::FromString(TextLoginSuccess));
+	LoginWidgetsHide();
 }
 
-void UMainLoginWidget::ShowMessageFail()
+void UMainLoginWidget::LoginFail(FString ErrorText)
 {
-	Message->SetText(FText::FromString("E-Mail or\and Password is wrong"));
+	Message->SetText(FText::FromString(ErrorText));
 }

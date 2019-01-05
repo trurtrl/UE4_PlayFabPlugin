@@ -4,6 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+
+#include "PlayFab.h"
+#include "Core/PlayFabClientAPI.h"
+
 #include "MainLoginWidget.generated.h"
 
 class UTextBlock;
@@ -26,8 +30,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void ButtonLoginClicked();
 
-	void ShowMessageLogin();
-	void ShowMessageFail();
+
+	void LoginSuccess();
+	void LoginFail(FString ErrorText);
 
 protected:
 	UPROPERTY(meta = (BindWidget))
@@ -56,6 +61,11 @@ protected:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Message;
+
+	FString TextLogin = "E-Mail:";
+	FString TextPassword = "Password:";
+	FString TextButton = "LOGIN";
+	FString TextLoginSuccess = "You logged in!";
 
 	void LoginWidgetsHide();
 	void LoginWidgetsShow();

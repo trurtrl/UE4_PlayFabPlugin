@@ -8,6 +8,7 @@
 #include "PlayFab.h"
 #include "Core/PlayFabClientDataModels.h"
 #include "Core/PlayFabClientAPI.h"
+#include "MainLoginWidget.h"
 
 #include "PFGameInstance.generated.h"
 
@@ -22,11 +23,16 @@ class UPFGameInstance : public UGameInstance
 public:
 	UPFGameInstance();
 	
-	bool Login();
+	void Login(FText Email, FText Password, UMainLoginWidget* LoginWidget);
+
 	void OnSuccess(const PlayFab::ClientModels::FLoginResult& Result) const;
 	void OnError(const PlayFab::FPlayFabError& ErrorResult) const;
 	
 private:
-	PlayFabClientPtr clientAPI = nullptr;	
+	FString TitleId = "9D95";	// 144
+
+
+	PlayFabClientPtr clientAPI = nullptr;
+	UMainLoginWidget* MainLoginWidget = nullptr;
 	
 };
