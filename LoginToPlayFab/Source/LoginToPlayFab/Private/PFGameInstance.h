@@ -21,9 +21,11 @@ class UPFGameInstance : public UGameInstance
 	
 public:
 	UPFGameInstance();
+	
+	bool Login();
 	void OnSuccess(const PlayFab::ClientModels::FLoginResult& Result) const;
 	void OnError(const PlayFab::FPlayFabError& ErrorResult) const;
-
+	
 private:
 	PlayFabClientPtr clientAPI = nullptr;	
 	

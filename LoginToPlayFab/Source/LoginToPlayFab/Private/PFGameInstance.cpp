@@ -4,6 +4,22 @@
 
 UPFGameInstance::UPFGameInstance()
 {
+	/*
+	clientAPI = IPlayFabModuleInterface::Get().GetClientAPI();
+	clientAPI->SetTitleId(TEXT("9D95"));
+
+	PlayFab::ClientModels::FLoginWithCustomIDRequest request;
+	request.CustomId = TEXT("GettingStartedGuide");
+	request.CreateAccount = true;*/
+
+/*	clientAPI->LoginWithCustomID(request,
+		PlayFab::UPlayFabClientAPI::FLoginWithCustomIDDelegate::CreateUObject(this, &UPFGameInstance::OnSuccess),
+		PlayFab::FPlayFabErrorDelegate::CreateUObject(this, &UPFGameInstance::OnError)
+	);*/
+}
+
+bool UPFGameInstance::Login()
+{
 	clientAPI = IPlayFabModuleInterface::Get().GetClientAPI();
 	clientAPI->SetTitleId(TEXT("9D95"));
 
@@ -11,10 +27,11 @@ UPFGameInstance::UPFGameInstance()
 	request.CustomId = TEXT("GettingStartedGuide");
 	request.CreateAccount = true;
 
-/*	clientAPI->LoginWithCustomID(request,
+
+	return clientAPI->LoginWithCustomID(request,
 		PlayFab::UPlayFabClientAPI::FLoginWithCustomIDDelegate::CreateUObject(this, &UPFGameInstance::OnSuccess),
 		PlayFab::FPlayFabErrorDelegate::CreateUObject(this, &UPFGameInstance::OnError)
-	);*/
+	);
 }
 
 void UPFGameInstance::OnSuccess(const PlayFab::ClientModels::FLoginResult& Result) const
